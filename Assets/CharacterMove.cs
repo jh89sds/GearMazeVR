@@ -7,6 +7,7 @@ public class CharacterMove : MonoBehaviour {
     ForwardStatus forwardStatus = ForwardStatus.NONE;
     int moveCount = 0;
 	float moveSize = 0.06f;
+    float cameraAngleY = 0;
 
 	[SerializeField] private VRInput m_VRInput;
 
@@ -16,7 +17,20 @@ public class CharacterMove : MonoBehaviour {
     }
 		
 	private void HandleClick(){
-		forwardStatus = ForwardStatus.FRONT;
+        cameraAngleY = Camera.main.transform.eulerAngles.y;
+        if (cameraAngleY > 315 || cameraAngleY <= 45)
+        {
+            forwardStatus = ForwardStatus.FRONT;
+        }else if(cameraAngleY > 45 && cameraAngleY <= 135)
+        {
+            forwardStatus = ForwardStatus.LEFT;
+        }else if(cameraAngleY > 135 && cameraAngleY <= 225)
+        {
+            forwardStatus = ForwardStatus.BACK;
+        }else if(cameraAngleY > 225 && cameraAngleY <= 315)
+        {
+            forwardStatus = ForwardStatus.RIGHT;
+        }
 	}
 
 	// Use this for initialization
@@ -26,7 +40,7 @@ public class CharacterMove : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        /*
         if (OVRInput.GetUp(OVRInput.RawButton.DpadRight))
         {
             forwardStatus = ForwardStatus.FRONT;
@@ -45,7 +59,7 @@ public class CharacterMove : MonoBehaviour {
         if (OVRInput.GetUp(OVRInput.RawButton.DpadDown))
         {
             forwardStatus = ForwardStatus.LEFT;
-        }
+        }*/
 
         if(forwardStatus == ForwardStatus.FRONT)
         {
