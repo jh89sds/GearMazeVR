@@ -1,16 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VRStandardAssets.Utils;
 
 public class CharacterMove : MonoBehaviour {
     ForwardStatus forwardStatus = ForwardStatus.NONE;
     int moveCount = 0;
+	float moveSize = 0.06f;
+
+	[SerializeField] private VRInput m_VRInput;
+
     enum ForwardStatus
     {
         FRONT, BACK, RIGHT, LEFT, NONE
     }
+		
+	private void HandleClick(){
+		forwardStatus = ForwardStatus.FRONT;
+	}
+
 	// Use this for initialization
 	void Start () {
+		m_VRInput.OnClick += HandleClick;
     }
 	
 	// Update is called once per frame
@@ -38,26 +49,27 @@ public class CharacterMove : MonoBehaviour {
 
         if(forwardStatus == ForwardStatus.FRONT)
         {
-            transform.Translate(0, 0, 0.1f);
+			transform.Translate(0, 0, moveSize);
             moveCount++;
+			moveSize += 0.01f;
         }
         if (forwardStatus == ForwardStatus.BACK)
         {
-            transform.Translate(0, 0, -0.1f);
+			transform.Translate(0, 0, -0.25f);
             moveCount++;
         }
         if (forwardStatus == ForwardStatus.RIGHT)
         {
-            transform.Translate(-0.1f, 0, 0);
+            transform.Translate(-0.25f, 0, 0);
             moveCount++;
         }
         if (forwardStatus == ForwardStatus.LEFT)
         {
-            transform.Translate(0.1f, 0, 0);
+            transform.Translate(0.25f, 0, 0);
             moveCount++;
         }
 
-        if(moveCount >= 50)
+        if(moveCount >= 35)
         {
             statusDefault();
         }
@@ -79,5 +91,6 @@ public class CharacterMove : MonoBehaviour {
     {
         forwardStatus = ForwardStatus.NONE;
         moveCount = 0;
+		moveSize = 0.06f;
     }
 }
