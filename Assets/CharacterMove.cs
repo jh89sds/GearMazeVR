@@ -10,6 +10,7 @@ public class CharacterMove : MonoBehaviour {
     float cameraAngleY = 0;
 
 	[SerializeField] private VRInput m_VRInput;
+	[SerializeField] private GameObject arrow;
 
     enum ForwardStatus
     {
@@ -63,13 +64,15 @@ public class CharacterMove : MonoBehaviour {
 
         if(forwardStatus == ForwardStatus.FRONT)
         {
-			transform.Translate(0, 0, moveSize);
+			transform.Translate(0, 0, 0.25f);
+			arrow.transform.Translate(0, 0, 0.5f);
             moveCount++;
 			moveSize += 0.01f;
         }
         if (forwardStatus == ForwardStatus.BACK)
         {
 			transform.Translate(0, 0, -0.25f);
+//			arrow.transform.Translate (0, 0, -0.25f);
             moveCount++;
         }
         if (forwardStatus == ForwardStatus.RIGHT)
