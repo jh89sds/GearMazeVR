@@ -6,7 +6,7 @@ using VRStandardAssets.Utils;
 public class CharacterMove : MonoBehaviour {
 	ForwardStatus forwardStatus = ForwardStatus.NONE;
 	ForwardStatus previousStatus = ForwardStatus.NONE;
-	bool isBackToStart = false;
+	public bool isBackToStart = false;
 	int moveCount = 0;
 	float moveSize = 0.06f;
 	float cameraAngleY = 0;
@@ -93,8 +93,7 @@ public class CharacterMove : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (!isBackToStart) {
-			
+		if (!isBackToStart) {			
 			if (other.tag == "Wall") {
 				transform.position = beforePos;
 			} else if (other.tag == "obstacle") {
@@ -116,8 +115,8 @@ public class CharacterMove : MonoBehaviour {
 				transform.Translate (0, 0, -3.0f);
 				break;
 			case ForwardStatus.BACK: 				transform.Translate (0, 0, 3.0f); 				break;
-			case ForwardStatus.LEFT: 				transform.Translate (-3.0f, 0, 0); 				break;
-			case ForwardStatus.RIGHT: 				transform.Translate (3.0f, 0, 0); 				break;
+			case ForwardStatus.LEFT: 				transform.Translate (3.0f, 0, 0); 				break;
+			case ForwardStatus.RIGHT: 				transform.Translate (-3.0f, 0, 0); 				break;
 		}
 		wall.GetComponent<Renderer>().enabled = true;
 		yield return new WaitForSeconds(1);
