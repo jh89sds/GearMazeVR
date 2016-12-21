@@ -10,8 +10,7 @@ public class SoundTrigger : MonoBehaviour {
 		audioSource = GetComponent<AudioSource> ();
 	}
 
-	public void OnTriggerEnter(Collider other)
-	{
+	public void OnTriggerEnter(Collider other) {
 		audioSource.Play ();
 	}
 }
