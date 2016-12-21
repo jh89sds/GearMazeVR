@@ -18,7 +18,6 @@ public class CharacterMove : MonoBehaviour {
 	[SerializeField] private GameObject arrow;
 	[SerializeField] private GameObject arrow3;
 	[SerializeField] private GameObject rotateObject;
-	[SerializeField] private GameObject wall;
 
 
 	enum ForwardStatus
@@ -84,7 +83,7 @@ public class CharacterMove : MonoBehaviour {
 		previousStatus = currentStatus;
 
 		if (isBackToStart) {
-			transform.position = Vector3.MoveTowards(transform.position, startPos, 100f * Time.deltaTime);
+			transform.position = Vector3.Lerp(transform.position, startPos, 10f * Time.deltaTime);
 			if (transform.position == startPos) {
 				isBackToStart = false;
 			}
@@ -94,20 +93,23 @@ public class CharacterMove : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.tag == "Wall") {
-			transform.position = beforePos;
-		}else if (other.tag == "obstacle") {
+		if (!isBackToStart) {
+			
+			if (other.tag == "Wall") {
+				transform.position = beforePos;
+			} else if (other.tag == "obstacle") {
 //			Transform obstacle = wall.transform.Find("obstacle");
 //			obstacle.GetComponent<Renderer>().enabled = true;
 //			transform.position = startPos;
 //			obstacle.GetComponent<Renderer>().enabled = false;
-			StartCoroutine("showWallAndMoveStartPosition");
-		}
+				StartCoroutine (showWallAndMoveStartPosition (other.gameObject));
+			}
 
-		statusDefault ();
+			statusDefault ();
+		}
 	}
 
-	IEnumerator showWallAndMoveStartPosition()
+	IEnumerator showWallAndMoveStartPosition(GameObject wall)
 	{
 		switch (forwardStatus) {
 			case ForwardStatus.FRONT:
