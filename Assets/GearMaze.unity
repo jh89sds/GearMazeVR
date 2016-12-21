@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.3731319, g: 0.38074932, b: 0.35872564, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -861,6 +861,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallAnimation: {fileID: 0}
   targetCamera: {fileID: 1118606340}
+  knightObj: {fileID: 1650019621}
 --- !u!111 &353134043
 Animation:
   m_ObjectHideFlags: 0
@@ -887,6 +888,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 0}
+  knightObj: {fileID: 1650019621}
 --- !u!82 &353134045
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3965,6 +3967,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallAnimation: {fileID: 0}
   targetCamera: {fileID: 1118606340}
+  knightObj: {fileID: 1650019621}
 --- !u!111 &701853885
 Animation:
   m_ObjectHideFlags: 0
@@ -3992,6 +3995,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 0}
+  knightObj: {fileID: 1650019621}
 --- !u!82 &701853887
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4229,6 +4233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 0}
+  knightObj: {fileID: 0}
 --- !u!65 &823686201
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4629,6 +4634,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallAnimation: {fileID: 0}
   targetCamera: {fileID: 1118606340}
+  knightObj: {fileID: 1650019621}
 --- !u!111 &1060873375
 Animation:
   m_ObjectHideFlags: 0
@@ -4656,6 +4662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 0}
+  knightObj: {fileID: 1650019621}
 --- !u!82 &1060873377
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5050,7 +5057,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1405883724
+  randomSeed: -732770992
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -10832,6 +10839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallAnimation: {fileID: 0}
   targetCamera: {fileID: 1118606340}
+  knightObj: {fileID: 1650019621}
 --- !u!111 &1586661321
 Animation:
   m_ObjectHideFlags: 0
@@ -10859,6 +10867,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 0}
+  knightObj: {fileID: 1650019621}
 --- !u!82 &1586661323
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11097,6 +11106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e423a9d7c5cafe41ae6f86b8d163442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBackToStart: 0
   stepAudioSource: {fileID: 1429550890}
   m_VRInput: {fileID: 1118606342}
   arrow: {fileID: 0}
@@ -13882,6 +13892,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallAnimation: {fileID: 0}
   targetCamera: {fileID: 1118606340}
+  knightObj: {fileID: 1650019621}
 --- !u!111 &1969070409
 Animation:
   m_ObjectHideFlags: 0
@@ -13909,6 +13920,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 0}
+  knightObj: {fileID: 1650019621}
 --- !u!82 &1969070411
 AudioSource:
   m_ObjectHideFlags: 0
@@ -14194,6 +14206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 0}
+  knightObj: {fileID: 1650019621}
 --- !u!82 &2046760991
 AudioSource:
   m_ObjectHideFlags: 0
@@ -14301,6 +14314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallAnimation: {fileID: 0}
   targetCamera: {fileID: 1118606340}
+  knightObj: {fileID: 1650019621}
 --- !u!1 &2069686477
 GameObject:
   m_ObjectHideFlags: 0
