@@ -15,14 +15,11 @@ public class CharacterMove : MonoBehaviour {
 	public AudioSource stepAudioSource;
 
 	[SerializeField] private VRInput m_VRInput;
-	[SerializeField] private GameObject arrow;
-	[SerializeField] private GameObject arrow3;
-	[SerializeField] private GameObject rotateObject;
-
+	[SerializeField] private GameObject directionArrow;
 
 	enum ForwardStatus
 	{
-		FRONT, BACK, RIGHT, LEFT, NONE
+		FRONT, RIGHT, BACK, LEFT, NONE
 	}
 
 	private void HandleClick(){
@@ -66,21 +63,28 @@ public class CharacterMove : MonoBehaviour {
 		}  else if (moveCount == 1) {
 			stepAudioSource.Play ();
 		}
-			
+
 		ForwardStatus currentStatus = getCameraDirection();
 
-		if(currentStatus == ForwardStatus.FRONT && previousStatus == ForwardStatus.LEFT){
-			arrow3.transform.Rotate (0, -90, 0);
-		} else if(currentStatus == ForwardStatus.FRONT && previousStatus == ForwardStatus.RIGHT){
-			arrow3.transform.Rotate (0, 90, 0);
+		if(currentStatus == ForwardStatus.FRONT && previousStatus == ForwardStatus.LEFT){ 
+			directionArrow.transform.Rotate (0, -90, 0);
 		} else if(currentStatus == ForwardStatus.LEFT && previousStatus == ForwardStatus.FRONT){
-			arrow3.transform.Rotate (0, 90, 0);
+			directionArrow.transform.Rotate (0, 90, 0);
 		} else if (currentStatus > previousStatus) { // 시계방향
-			arrow3.transform.Rotate (0, -90, 0);
+			directionArrow.transform.Rotate (0, -90, 0);
 		} else if (currentStatus < previousStatus){ // 반시계방향
-			arrow3.transform.Rotate (0, 90, 0);
+			directionArrow.transform.Rotate (0, 90, 0);
 		}
 		previousStatus = currentStatus;
+
+		if((transform.position.x <= -9f && currentStatus == ForwardStatus.LEFT)
+			|| (transform.position.x >= 9f && currentStatus == ForwardStatus.RIGHT)
+			|| (transform.position.z >= 9f && currentStatus == ForwardStatus.FRONT)
+			|| (transform.position.z <= -9f && currentStatus == ForwardStatus.BACK)){
+			directionArrow.SetActive(false);
+		} else {
+			directionArrow.SetActive (true);
+		}
 
 		if (isBackToStart) {
 			transform.position = Vector3.Lerp(transform.position, startPos, 10f * Time.deltaTime);
@@ -88,22 +92,16 @@ public class CharacterMove : MonoBehaviour {
 				isBackToStart = false;
 			}
 		}
-
 	}
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (!isBackToStart) {			
+		if (!isBackToStart) {
 			if (other.tag == "Wall") {
 				transform.position = beforePos;
 			} else if (other.tag == "obstacle") {
-//			Transform obstacle = wall.transform.Find("obstacle");
-//			obstacle.GetComponent<Renderer>().enabled = true;
-//			transform.position = startPos;
-//			obstacle.GetComponent<Renderer>().enabled = false;
 				StartCoroutine (showWallAndMoveStartPosition (other.gameObject));
 			}
-
 			statusDefault ();
 		}
 	}
@@ -111,20 +109,25 @@ public class CharacterMove : MonoBehaviour {
 	IEnumerator showWallAndMoveStartPosition(GameObject wall)
 	{
 		switch (forwardStatus) {
-			case ForwardStatus.FRONT:
-				transform.Translate (0, 0, -3.0f);
-				break;
-			case ForwardStatus.BACK: 				transform.Translate (0, 0, 3.0f); 				break;
-			case ForwardStatus.LEFT: 				transform.Translate (3.0f, 0, 0); 				break;
-			case ForwardStatus.RIGHT: 				transform.Translate (-3.0f, 0, 0); 				break;
+		case ForwardStatus.FRONT:
+			transform.Translate (0, 0, -3.0f);
+			break;
+		case ForwardStatus.BACK:
+			transform.Translate (0, 0, 3.0f);
+			break;
+		case ForwardStatus.LEFT:
+			transform.Translate (-3.0f, 0, 0);
+			break;
+		case ForwardStatus.RIGHT:
+			transform.Translate (3.0f, 0, 0);
+			break;
 		}
 		wall.GetComponent<Renderer>().enabled = true;
 		yield return new WaitForSeconds(1);
-//		transform.position = startPos;
+		//		transform.position = startPos;
 		isBackToStart = true;
 		wall.GetComponent<Renderer>().enabled = false;
 	}
-
 
 	void statusDefault()
 	{
