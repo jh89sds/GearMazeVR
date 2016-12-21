@@ -4235,7 +4235,7 @@ GameObject:
   - component: {fileID: 823686199}
   - component: {fileID: 823686202}
   - component: {fileID: 823686201}
-  - component: {fileID: 823686200}
+  - component: {fileID: 823686203}
   m_Layer: 0
   m_Name: SuccessSound
   m_TagString: Untagged
@@ -4256,19 +4256,6 @@ Transform:
   m_Father: {fileID: 398211610}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &823686200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 823686198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57b6dc1cf341b44059f999cbe852bd53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
-  knightObj: {fileID: 0}
 --- !u!65 &823686201
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4361,6 +4348,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &823686203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 823686198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f10454b7bdbcb4737877ff8d8ab9e8e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
 --- !u!1 &986333993
 GameObject:
   m_ObjectHideFlags: 0
