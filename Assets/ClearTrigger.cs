@@ -19,6 +19,10 @@ public class ClearTrigger : MonoBehaviour {
 		StartCoroutine(StartLoad("ClearMaze"));
 	}
 
+	void Start () {
+		particleSystem.gameObject.SetActive (false);
+	}
+
 	void Update () {
 		if (isMovingToClear) {
 			fTime += Time.deltaTime;
@@ -42,6 +46,7 @@ public class ClearTrigger : MonoBehaviour {
 
 			audioSource.Play ();
 			goalIcon.SetActive (false);
+			particleSystem.gameObject.SetActive (true);
 			particleSystem.Play ();
 
 			while (asyncOper.progress < 0.9f)
