@@ -15,7 +15,7 @@ public class CharacterMove : MonoBehaviour {
 	public AudioSource stepAudioSource;
 
 	[SerializeField] private VRInput m_VRInput;
-	[SerializeField] private GameObject directionArrow;
+	[SerializeField] private GameObject arrow;
 
 	enum ForwardStatus
 	{
@@ -65,15 +65,14 @@ public class CharacterMove : MonoBehaviour {
 		}
 
 		ForwardStatus currentStatus = getCameraDirection();
-
 		if(currentStatus == ForwardStatus.FRONT && previousStatus == ForwardStatus.LEFT){ 
-			directionArrow.transform.Rotate (0, -90, 0);
+			arrow.transform.Rotate (0, 90, 0);
 		} else if(currentStatus == ForwardStatus.LEFT && previousStatus == ForwardStatus.FRONT){
-			directionArrow.transform.Rotate (0, 90, 0);
+			arrow.transform.Rotate (0, -90, 0);
 		} else if (currentStatus > previousStatus) { // 시계방향
-			directionArrow.transform.Rotate (0, -90, 0);
+			arrow.transform.Rotate (0, 90, 0);
 		} else if (currentStatus < previousStatus){ // 반시계방향
-			directionArrow.transform.Rotate (0, 90, 0);
+			arrow.transform.Rotate (0, -90, 0);
 		}
 		previousStatus = currentStatus;
 
@@ -81,9 +80,9 @@ public class CharacterMove : MonoBehaviour {
 			|| (transform.position.x >= 9f && currentStatus == ForwardStatus.RIGHT)
 			|| (transform.position.z >= 9f && currentStatus == ForwardStatus.FRONT)
 			|| (transform.position.z <= -9f && currentStatus == ForwardStatus.BACK)){
-			directionArrow.SetActive(false);
+			arrow.SetActive(false);
 		} else {
-			directionArrow.SetActive (true);
+			arrow.SetActive (true);
 		}
 
 		if (isBackToStart) {
